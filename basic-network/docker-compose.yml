@@ -79,6 +79,7 @@ services:
         - ./crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp:/etc/hyperledger/msp/peer
         - ./crypto-config/peerOrganizations/org1.example.com/users:/etc/hyperledger/msp/users
         - ./config:/etc/hyperledger/configtx
+        - ./../../smart-contracts/hyperledger/contracts/:/opt/gopath/src/github.com/contracts
     depends_on:
       - orderer.example.com
       - couchdb
@@ -115,8 +116,8 @@ services:
     command: /bin/bash
     volumes:
         - /var/run/:/host/var/run/
-        - ./../chaincode/:/opt/gopath/src/github.com/
         - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+        - ./../../smart-contracts/hyperledger/contracts/:/opt/gopath/src/github.com/contracts
     networks:
         - basic
     #depends_on:
